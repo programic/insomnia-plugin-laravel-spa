@@ -1,0 +1,10 @@
+{
+  "name": "insomnia-plugin-insomnia-programic-laravel-spa",
+  "version": "0.0.1",
+  "private": true,
+  "insomnia": {
+    "name": "insomnia-programic-laravel-spa",
+    "description": ""
+  },
+  "main": "main.js"
+}
