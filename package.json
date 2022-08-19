@@ -1,10 +1,24 @@
 {
-  "name": "insomnia-plugin-insomnia-programic-laravel-spa",
-  "version": "0.0.1",
-  "private": true,
+  "name": "insomnia-plugin-programic-laravel-spa",
+  "version": "1.0.0",
   "insomnia": {
     "name": "insomnia-programic-laravel-spa",
     "description": ""
   },
-  "main": "main.js"
+  "main": "main.js",
+  "keywords": [
+    "insomnia",
+    "programic",
+    "insomnia-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/programic/insomnia-plugin-laravel-spa"
+  },
+  "author": "Rick Bongers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/programic/insomnia-plugin-laravel-spa/issues"
+  },
+  "homepage": "https://programic.com"
 }
