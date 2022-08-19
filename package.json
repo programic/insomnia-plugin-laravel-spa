@@ -1,6 +1,6 @@
 {
   "name": "@programic/insomnia-plugin-programic-laravel-spa",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "insomnia": {
     "name": "Laravel Spa",
     "displayName": "Laravel Spa Plugin",
