@@ -2,8 +2,14 @@
   "name": "@programic/insomnia-plugin-programic-laravel-spa",
   "version": "1.0.0",
   "insomnia": {
-    "name": "insomnia-programic-laravel-spa",
-    "description": ""
+    "name": "Laravel Spa",
+    "displayName": "Laravel Spa Plugin",
+    "description": "The Laravel Spa plugin",
+    "publisher": {
+      "name": "Rick Bongers",
+      "icon": "https://programic.com/themes/programic/assets/images/favicons/apple-touch-icon-152x152.png"
+    },
+    "unlisted": false
   },
   "main": "main.js",
   "keywords": [

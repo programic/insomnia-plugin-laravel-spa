@@ -1,7 +1,4 @@
-window.appCookieJar = null;
 async function getCookieJar(context) {
-    lastContextZooi = context;
-	console.log(context);
     const { meta } = context;
 
     if (!meta.requestId || !meta.workspaceId) {
@@ -19,8 +16,6 @@ async function getCookieJar(context) {
     if (!cookieJar) {
         throw new Error(`Cookie jar not found for ${meta.workspaceId}`);
     }
-
-    window.appCookieJar = cookieJar;
 
     return cookieJar;
 }
@@ -49,7 +44,7 @@ async function setHeaders(context) {
     }
 }
 
-const exclueRequest = {
+const excludeRequest = {
     label: 'Disable global headers',
     action: async (context, data) => {
         const { request } = data;
@@ -87,24 +82,24 @@ const includeRequestGroup = {
 
 const sendAllRequestsInGroep = {
     label: 'Send Requests',
-	action: async (context, data) => {
-	  const { requests } = data;
+	  action: async (context, data) => {
+        const { requests } = data;
 
-	  let results = [];
-	  for (const request of requests) {
-	  	console.log(request);
-	    const response = await context.network.sendRequest(request);
-	    results.push(`<li>${request.name}: ${response.statusCode}</li>`);
-	  }
+        let results = [];
+        for (const request of requests) {
+          console.log(request);
+          const response = await context.network.sendRequest(request);
+          results.push(`<li>${request.name}: ${response.statusCode}</li>`);
+        }
 
-	  const html = `<ul>${results.join('\n')}</ul>`;
+        const html = `<ul>${results.join('\n')}</ul>`;
 
-	  context.app.showGenericModalDialog('Results', { html });
-	},
+        context.app.showGenericModalDialog('Results', { html });
+    },
 };
 
 exports.requestHooks = [setHeaders];
-exports.requestActions = [exclueRequest, includeRequest];
+exports.requestActions = [excludeRequest, includeRequest];
 exports.requestGroupActions = [excludeRequestGroup, includeRequestGroup, sendAllRequestsInGroep];
 exports.templateTags = [{
     name: 'laravel_csrf',
@@ -123,7 +118,6 @@ exports.templateTags = [{
 
         const token = cookieJar.cookies?.find(cookie => cookie.key === cookieName);
 
-        
         if (!token) {
             const resendInProgress = await context.store.getItem(`resend_cookie_network`);
             if (! resendInProgress) {
@@ -131,7 +125,7 @@ exports.templateTags = [{
             }
             console.log('resend network for cookie');
             // const request = await context.util.models.request.getById('req_7354344b85ec48a3a49008367e4b07cf');
-            console.log(request);
+            // console.log(request);
         	// context.network.sendRequest(request);
         }
 
@@ -160,8 +154,3 @@ exports.templateTags = [{
         return cookieJar;
     },
 }];
-
-document.querySelector('.sidebar__menu button').addEventListener('click', function () {
-
-    console.log('jouw moeder');
-})
