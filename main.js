@@ -111,23 +111,23 @@ exports.templateTags = [{
             type: 'string',
             defaultValue: 'XSRF-TOKEN',
             placeholder: 'It is "XSRF-TOKEN" by default in laravel',
+        },
+        {
+            displayName: 'CSRF request',
+            type: 'string',
+            placeholder: 'Take the request id from your csrf request',
         }
     ],
-    async run(context, cookieName = 'XSRF-TOKEN') {
+    async run(context, cookieName = 'XSRF-TOKEN', requestId) {
+        if (requestId) {
+            const request = await context.util.models.request.getById(requestId);
+
+            context.network.sendRequest(request);
+        }
+
         const cookieJar = await this.getCookieJar(context);
 
         const token = cookieJar.cookies?.find(cookie => cookie.key === cookieName);
-
-        if (!token) {
-            const resendInProgress = await context.store.getItem(`resend_cookie_network`);
-            if (! resendInProgress) {
-                await context.store.setItem(`resend_cookie_network`, "true");
-            }
-            console.log('resend network for cookie');
-            // const request = await context.util.models.request.getById('req_7354344b85ec48a3a49008367e4b07cf');
-            // console.log(request);
-        	// context.network.sendRequest(request);
-        }
 
         return decodeURIComponent(token?.value);
     },
